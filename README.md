@@ -1,2 +1,11 @@
-# template-cardapio-digital
-Template de cardápio digital com interface para clientes realizarem pedidos, painel administrativo com funções de CRUD (adicionar, editar, excluir itens) e painel de pedidos com detalhes em tempo real. Ideal para restaurantes e lanchonetes.
+# 🍽️ Template de Cardápio Digital Este projeto é um template completo para cardápios digitais, ideal para restaurantes, lanchonetes e cafés que desejam modernizar seus pedidos.
+
+ Funcionalidades:
+
+🧑‍💻 Cliente: Interface intuitiva com todas as opções disponíveis para pedido.
+
+🛠️ Administração (CRUD): Adicione, edite ou remova itens do cardápio com facilidade.
+
+📊 Painel de Pedidos: Visualização em tempo real dos pedidos feitos, com todas as informações relevantes.
+
+Pronto para ser integrado e personalizado conforme a necessidade do seu negócio!
