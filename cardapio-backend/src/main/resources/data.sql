@@ -1,9 +1,9 @@
 -- Inserir usuários padrão (senhas são 'password123' criptografadas com BCrypt)
 INSERT INTO usuarios (nome, email, senha, role) VALUES 
-('Administrador', 'admin@cardapio.com', '$2a$10$frIGDu4AReMjG1Rnol9b6uQcZnN6RUJ67/eMyIjY1.JBDWdaGIR5K', 'ADMIN'),
-('Cozinha Principal', 'cozinha@cardapio.com', '$2a$10$frIGDu4AReMjG1Rnol9b6uQcZnN6RUJ67/eMyIjY1.JBDWdaGIR5K', 'COZINHA'),
-('Garçom João', 'garcom@cardapio.com', '$2a$10$frIGDu4AReMjG1Rnol9b6uQcZnN6RUJ67/eMyIjY1.JBDWdaGIR5K', 'GARCOM'),
-('Cliente Teste', 'cliente@cardapio.com', '$2a$10$frIGDu4AReMjG1Rnol9b6uQcZnN6RUJ67/eMyIjY1.JBDWdaGIR5K', 'CLIENTE')
+('Administrador', 'admin@cardapio.com', '$2a$10$0EYAUwWQQJtxNp1a/yAxvu9Jzl/jGMT.mz9qYXNqfU.exSA5Xsvu6', 'ADMIN'),
+('Cozinha Principal', 'cozinha@cardapio.com', '$2a$10$0EYAUwWQQJtxNp1a/yAxvu9Jzl/jGMT.mz9qYXNqfU.exSA5Xsvu6', 'COZINHA'),
+('Garçom João', 'garcom@cardapio.com', '$2a$10$0EYAUwWQQJtxNp1a/yAxvu9Jzl/jGMT.mz9qYXNqfU.exSA5Xsvu6', 'GARCOM'),
+('Cliente Teste', 'cliente@cardapio.com', '$2a$10$0EYAUwWQQJtxNp1a/yAxvu9Jzl/jGMT.mz9qYXNqfU.exSA5Xsvu6', 'CLIENTE')
 ON CONFLICT (email) DO NOTHING;
 
 -- Inserir itens do cardápio
