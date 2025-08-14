@@ -5,7 +5,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.0</version>
+        <!-- ATUALIZAÇÃO: Versão mais recente do Spring Boot para correções de segurança. -->
+        <version>3.3.2</version>
         <relativePath/>
     </parent>
     <groupId>com.cardapio</groupId>
@@ -15,6 +16,8 @@
     <description>Sistema de cardápio digital com pedidos em tempo real</description>
     <properties>
         <java.version>17</java.version>
+        <!-- PROPRIEDADE: Define a versão do JJWT para ser usada em todas as dependências relacionadas. -->
+        <jjwt.version>0.12.5</jjwt.version>
     </properties>
     <dependencies>
         <dependency>
@@ -38,21 +41,22 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!-- ATUALIZAÇÃO: Biblioteca JWT atualizada para a versão mais recente. -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
-            <version>0.11.5</version>
+            <version>${jjwt.version}</version>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>
-            <version>0.11.5</version>
+            <version>${jjwt.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>
-            <version>0.11.5</version>
+            <version>${jjwt.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -66,6 +70,13 @@
             <version>1.5.5.Final</version>
             <scope>provided</scope>
         </dependency>
+        <!-- ADICIONE ESTA DEPENDÊNCIA PARA O SWAGGER / OPENAPI -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -87,7 +98,8 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <!-- ATUALIZAÇÃO: Versão mais recente do plugin de compilação. -->
+                <version>3.13.0</version>
                 <configuration>
                     <source>17</source>
                     <target>17</target>
@@ -103,4 +115,3 @@
         </plugins>
     </build>
 </project>
-
