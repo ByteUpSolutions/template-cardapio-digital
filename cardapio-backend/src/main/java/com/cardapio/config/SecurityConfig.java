@@ -50,34 +50,43 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
-    
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .csrf(csrf -> csrf.disable())
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(authz -> authz
-                // Endpoints públicos
-                .requestMatchers("/auth/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/cardapio").permitAll()
-                .requestMatchers(HttpMethod.POST, "/pedidos").permitAll()
-                .requestMatchers(HttpMethod.GET, "/pedidos/{id}").permitAll()
-                
-                // Endpoints do administrador
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                
-                // Endpoints da cozinha
-                .requestMatchers("/cozinha/**").hasRole("COZINHA")
-                
-                // Endpoints do garçom
-                .requestMatchers("/garcom/**").hasRole("GARCOM")
-                
-                // Qualquer outra requisição precisa estar autenticada
-                .anyRequest().authenticated()
-            )
-            .authenticationProvider(authenticationProvider())
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(authz -> authz
+                        // ADICIONE ESTAS LINHAS PARA LIBERAR O SWAGGER
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
+
+                        // Endpoints públicos
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/cardapio").permitAll()
+
+                        // Endpoints autenticados (sugestão de melhoria)
+                        .requestMatchers(HttpMethod.POST, "/pedidos").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/pedidos/{id}").permitAll()
+
+                        // Endpoints do administrador
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+
+                        // Endpoints da cozinha
+                        .requestMatchers("/cozinha/**").hasRole("COZINHA")
+
+                        // Endpoints do garçom
+                        .requestMatchers("/garcom/**").hasRole("GARCOM")
+
+                        // Qualquer outra requisição precisa estar autenticada
+                        .anyRequest().authenticated()
+                )
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
     
