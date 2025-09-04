@@ -27,7 +27,7 @@ public class JwtUtil {
     private SecretKey signingKey;
 
     /// Este métod0 é executado uma vez após a inicialização do componente.
-    /// Ele converte a string secreta do application.yml em uma chave criptográfica segura (SecretKey).
+    /// Ele converte a string secreta do application-dev.yml em uma chave criptográfica segura (SecretKey).
     /// Isso garante que a chave seja compatível com o algoritmo HMAC-SHA.
     @PostConstruct
     public void init() {
