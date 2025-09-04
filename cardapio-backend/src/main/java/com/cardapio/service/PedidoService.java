@@ -191,6 +191,14 @@ public class PedidoService {
         Double vendas = pedidoRepository.somaVendasHoje(inicioHoje);
         return vendas != null ? vendas : 0.0;
     }
+
+    @Transactional(readOnly = true)
+    public List<PedidoDTO> listarPedidosPorStatusIn(List<PedidoStatus> statuses) {
+        List<Pedido> pedidos = pedidoRepository.findByStatusInOrderByDataCriacaoAsc(statuses);
+        return pedidos.stream()
+                .map(pedidoMapper::toDTO)
+                .collect(Collectors.toList());
+    }
     
     private void validarPedido(PedidoDTO pedidoDTO) {
         if (pedidoDTO.getItens() == null || pedidoDTO.getItens().isEmpty()) {
