@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -63,6 +65,18 @@ public class CozinhaController {
         StatusUpdateRequest statusRequest = new StatusUpdateRequest(PedidoStatus.PRONTO);
         PedidoDTO pedidoAtualizado = pedidoService.atualizarStatusPedido(id, statusRequest);
         return ResponseEntity.ok(pedidoAtualizado);
+    }
+
+    @GetMapping("/pedidos")
+    public ResponseEntity<List<PedidoDTO>> listarPedidosParaCozinha() {
+        // Lista de status que são relevantes para a tela da cozinha
+        List<PedidoStatus> statuses = Arrays.asList(
+                PedidoStatus.RECEBIDO,
+                PedidoStatus.EM_PREPARO,
+                PedidoStatus.PRONTO
+        );
+        List<PedidoDTO> pedidos = pedidoService.listarPedidosPorStatusIn(statuses); // Precisaremos criar este método no service
+        return ResponseEntity.ok(pedidos);
     }
 }
 
